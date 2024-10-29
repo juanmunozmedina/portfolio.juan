@@ -1,2 +1,8 @@
-# portfolio.juan
-Portfolio con un resumen de mi experiencia y algunos de los proyectos que he desarrollado en mi trayectoria laboral.
+# 👨🏻‍💻 Porfolio para programadores y desarrolladores
+
+<div align="center">
+<a href="https://juanmunozmedina.vercel.app/">
+<img src="./public/porfolio.webp">
+</a>
+<p></p>
+</div>
