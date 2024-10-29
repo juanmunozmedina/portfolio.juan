@@ -2,6 +2,10 @@
 import GitHub from "./icons/GitHub.astro"
 import NextJS from "./icons/NextJS.astro"
 import Tailwind from "./icons/Tailwind.astro"
+import Astro from "./icons/Astro.astro"
+import HTML from "./icons/HTML.astro"
+import Sass from "./icons/Sass.astro"
+import JS from "./icons/JS.astro"
 import Link from "./icons/Link.astro"
 import LinkButton from "./LinkButton.astro"
 
@@ -16,16 +20,76 @@ const TAGS = {
     class: "bg-[#003159] text-white",
     icon: Tailwind,
   },
+  ASTRO: {
+    name: "Astro",
+    class: "bg-[#1A1A1A] text-white",
+    icon: Astro,
+  },
+  HTML: {
+    name: "HTML5",
+    class: "bg-[#4B1A0C] text-white",
+    icon: HTML,
+  },
+  SASS: {
+    name: "Sass",
+    class: "bg-[#452133] text-white",
+    icon: Sass,
+  },
+  JS: {
+    name: "JavaScript",
+    class: "bg-[#50491A] text-white",
+    icon: JS,
+  },
 }
 const PROJECTS = [
   {
-    title: "Tienda online Bodegas Maquiavelo",
+    title: "Bodegas Maquiavelo",
     description:
-      "Desarrollo de tienda online, configuración de todos los ajustes de la misma y maquetación web. Mantenimiento y gestión de los pedidos a través de la web.",
+      "Desarrollo de tienda online, configuración de todos los ajustes de la misma y diseño web responsivo. Mantenimiento y gestión de los pedidos a través de la web.",
     link: "https://maquiavelowines.com/",
     github: "https://shop.astro.build/",
     image: "/projects/maquiavelo.webp",
-    tags: [TAGS.NEXT, TAGS.TAILWIND],
+    tags: [TAGS.ASTRO],
+  },
+  {
+    title: "Krean",
+    description:
+      "Desarrollo de web corporativa. Diseño web responsivo.",
+    link: "https://www.krean.com/",
+    image: "/projects/krean.webp",
+    tags: [TAGS.HTML, TAGS.SASS, TAGS.JS],
+  },
+  {
+    title: "Palacios",
+    description:
+      "Desarrollo de web corporativa. Diseño web responsivo.",
+    link: "https://www.palacios.us/",
+    image: "/projects/palacios.webp",
+    tags: [TAGS.HTML, TAGS.SASS, TAGS.JS],
+  },
+  {
+    title: "Sercobe",
+    description:
+      "Desarrollo de web corporativa. Diseño web responsivo.",
+    link: "https://www.sercobe.es/",
+    image: "/projects/sercobe.webp",
+    tags: [TAGS.HTML, TAGS.SASS, TAGS.JS],
+  },
+  {
+    title: "Donosac",
+    description:
+      "Desarrollo de web corporativa. Diseño web responsivo.",
+    link: "https://www.donosac.com/",
+    image: "/projects/donosac.webp",
+    tags: [TAGS.HTML, TAGS.SASS, TAGS.JS],
+  },
+  {
+    title: "Mopal",
+    description:
+      "Desarrollo de web corporativa. Diseño web responsivo.",
+    link: "https://mopaltapizados.com/",
+    image: "/projects/mopal.webp",
+    tags: [TAGS.HTML, TAGS.SASS, TAGS.JS],
   },
 ]
 ---
