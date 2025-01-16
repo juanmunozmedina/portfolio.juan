@@ -7,6 +7,8 @@ import HTML from "./icons/HTML.astro"
 import Sass from "./icons/Sass.astro"
 import JS from "./icons/JS.astro"
 import Link from "./icons/Link.astro"
+import Drupal from "./icons/Drupal.astro"
+import TS from "./icons/TS.astro"
 import LinkButton from "./LinkButton.astro"
 
 const TAGS = {
@@ -40,6 +42,16 @@ const TAGS = {
     class: "bg-[#50491A] text-white",
     icon: JS,
   },
+  TS: {
+    name: "TypeScript",
+    class: "bg-[#002844] text-white",
+    icon: TS,
+  },
+  Drupal: {
+    name: "Drupal",
+    class: "bg-[#00344A] text-white",
+    icon: Drupal,
+  },
 }
 const PROJECTS = [
   {
@@ -49,7 +61,7 @@ const PROJECTS = [
     link: "https://maquiavelowines.com/",
     github: "https://github.com/juanmunozmedina/maquiavelowines",
     image: "/projects/maquiavelo.webp",
-    tags: [TAGS.ASTRO],
+    tags: [TAGS.ASTRO, TAGS.HTML, TAGS.TAILWIND, TAGS.TS],
   },
   {
     title: "Krean",
@@ -57,7 +69,7 @@ const PROJECTS = [
       "Desarrollo de web corporativa para Krean Group, dedicados a la arquitectura e ingeniería. Diseño web responsivo.",
     link: "https://www.krean.com/",
     image: "/projects/krean.webp",
-    tags: [TAGS.HTML, TAGS.SASS, TAGS.JS],
+    tags: [TAGS.Drupal, TAGS.HTML, TAGS.SASS, TAGS.JS],
   },
   {
     title: "Palacios",
@@ -65,7 +77,7 @@ const PROJECTS = [
       "Desarrollo de web corporativa para el reconocido grupo de alimentación Palacios. Diseño web responsivo.",
     link: "https://www.palacios.us/",
     image: "/projects/palacios.webp",
-    tags: [TAGS.HTML, TAGS.SASS, TAGS.JS],
+    tags: [TAGS.Drupal, TAGS.HTML, TAGS.SASS, TAGS.JS],
   },
   {
     title: "Sercobe",
@@ -73,7 +85,7 @@ const PROJECTS = [
       "Desarrollo de web corporativa para la asociación española de fabricantes de bienes de equipo. Diseño web responsivo.",
     link: "https://www.sercobe.es/",
     image: "/projects/sercobe.webp",
-    tags: [TAGS.HTML, TAGS.SASS, TAGS.JS],
+    tags: [TAGS.Drupal, TAGS.HTML, TAGS.SASS, TAGS.JS],
   },
   {
     title: "Donosac",
@@ -81,7 +93,7 @@ const PROJECTS = [
       "Desarrollo de web corporativa para empresa innovadora en packaging 100% sostenible. Diseño web responsivo.",
     link: "https://www.donosac.com/",
     image: "/projects/donosac.webp",
-    tags: [TAGS.HTML, TAGS.SASS, TAGS.JS],
+    tags: [TAGS.Drupal, TAGS.HTML, TAGS.SASS, TAGS.JS],
   },
 ]
 ---
@@ -92,7 +104,7 @@ const PROJECTS = [
     <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
   <div class="w-full md:w-1/2">
     <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
-      <img alt="Recién llegado vs 5 años en Nueva Zelanda" class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="lazy" src={image} />
+      <img alt="Portada proyecto web - Juan Muñoz Medina" class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="lazy" src={image} />
     </div>
   </div>
 

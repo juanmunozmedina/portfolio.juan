@@ -2,7 +2,7 @@
 
 <div align="center">
 <a href="https://juanmunozmedina.vercel.app/">
-<img src="./public/porfolio.webp">
+<img src="./public/portfolio.webp">
 </a>
 <p></p>
 </div>
