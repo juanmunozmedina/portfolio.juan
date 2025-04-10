@@ -30,7 +30,7 @@ const { title, company, description, link, date } = Astro.props
     {description}
     {
       link && (
-        <LinkInline target="_blank" rel="external" href={link}>
+        <LinkInline href={link}>
           Saber más{" "}
           <svg
             xmlns="http://www.w3.org/2000/svg"
