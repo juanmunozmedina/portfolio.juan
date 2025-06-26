@@ -13,13 +13,13 @@ const THEMES = ["Claro", "Oscuro", "Sistema"]
     class="appearance-none border-none flex hover:scale-125 transition"
   >
     <span class="sr-only">Elige el tema</span>
-    <SunIcon id="light" class="theme-toggle-icon size-5 transition-all" />
+    <SunIcon id="claro" class="theme-toggle-icon size-5 transition-all" />
     <MoonIcon
-      id="dark"
+      id="oscuro"
       class="theme-toggle-icon absolute size-5 transition-all"
     />
     <SystemIcon
-      id="system"
+      id="sistema"
       class="theme-toggle-icon absolute size-5 transition-all"
     />
   </button>
@@ -66,7 +66,7 @@ const THEMES = ["Claro", "Oscuro", "Sistema"]
 
   const getThemePreference = () => {
     if (typeof localStorage !== "undefined") {
-      return localStorage.getItem("theme") ?? "system"
+      return localStorage.getItem("theme") ?? "sistema"
     }
 
     return window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -91,8 +91,8 @@ const THEMES = ["Claro", "Oscuro", "Sistema"]
 
     const themePreference = getThemePreference()
     const isDark =
-      themePreference === "dark" ||
-      (themePreference === "system" && matchMedia.matches)
+      themePreference === "oscuro" ||
+      (themePreference === "sistema" && matchMedia.matches)
 
     updateIcon(themePreference)
     document.documentElement.classList[isDark ? "add" : "remove"]("dark")
