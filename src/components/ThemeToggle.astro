@@ -1,9 +1,9 @@
 ---
-import SunIcon from "./icons/Sun.astro"
-import MoonIcon from "./icons/Moon.astro"
-import SystemIcon from "./icons/System.astro"
+import SunIcon from "./icons/Sun.astro";
+import MoonIcon from "./icons/Moon.astro";
+import SystemIcon from "./icons/System.astro";
 
-const THEMES = ["Claro", "Oscuro", "Sistema"]
+const THEMES = ["Claro", "Oscuro", "Sistema"];
 ---
 
 <div class="relative ml-1 mr-1">
@@ -23,15 +23,16 @@ const THEMES = ["Claro", "Oscuro", "Sistema"]
       class="theme-toggle-icon absolute size-5 transition-all"
     />
   </button>
+
   <div
     transition:persist
     id="themes-menu"
-    class="absolute hidden scale-80 top-8 right-0 text-sm p-1 min-w-[8rem] rounded-md border border-gray-100 bg-white/90 dark:bg-gray-900/90 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md"
+    class="absolute hidden scale-80 top-auto -right-3 text-sm p-1 min-w-[8rem] rounded-md border border-gray-100 bg-white/90 dark:bg-gray-900/90 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md"
   >
     <ul>
       {
         THEMES.map((theme) => (
-          <li class="themes-menu-option px-2 py-1.5 cursor-default hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm">
+          <li class="themes-menu-option px-2 py-1.5 cursor-pointer hover:bg-neutral-400/40 dark:hover:bg-gray-500/50 rounded-sm">
             {theme}
           </li>
         ))
@@ -60,63 +61,77 @@ const THEMES = ["Claro", "Oscuro", "Sistema"]
 </style>
 
 <script is:inline>
-  let remove = null
-  const matchMedia = window.matchMedia("(prefers-color-scheme: dark)")
-  const themesMenu = document.getElementById("themes-menu")
+  const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
 
-  const getThemePreference = () => {
-    if (typeof localStorage !== "undefined") {
-      return localStorage.getItem("theme") ?? "sistema"
-    }
-
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light"
+  function getThemePreference() {
+    return localStorage.getItem("theme") ?? "sistema";
   }
 
-  const updateIcon = (themePreference) => {
-    document.querySelectorAll(".theme-toggle-icon").forEach((element) => {
-      element.style.scale = element.id === themePreference ? "1" : "0"
-    })
+  function updateIcon(themePreference) {
+    document.querySelectorAll(".theme-toggle-icon").forEach((icon) => {
+      icon.style.scale = icon.id === themePreference ? "1" : "0";
+    });
   }
 
-  const updateTheme = () => {
-    if (remove != null) {
-      remove()
-    }
-    matchMedia.addEventListener("change", updateTheme)
-    remove = () => {
-      matchMedia.removeEventListener("change", updateTheme)
-    }
+  function updateTheme() {
+    const themePreference = getThemePreference();
 
-    const themePreference = getThemePreference()
     const isDark =
       themePreference === "oscuro" ||
-      (themePreference === "sistema" && matchMedia.matches)
+      (themePreference === "sistema" && matchMedia.matches);
 
-    updateIcon(themePreference)
-    document.documentElement.classList[isDark ? "add" : "remove"]("dark")
+    document.documentElement.classList.toggle("dark", isDark);
+
+    updateIcon(themePreference);
   }
 
-  updateTheme()
+  function initThemeToggle() {
+    const themesMenu = document.getElementById("themes-menu");
+    const button = document.getElementById("theme-toggle-btn");
 
-  document.addEventListener("click", () => themesMenu.classList.remove("open"))
+    if (!themesMenu || !button) return;
 
-  document.getElementById("theme-toggle-btn").addEventListener("click", (e) => {
-    e.stopPropagation()
-    const isClosed = !themesMenu.classList.contains("open")
-    themesMenu.classList[isClosed ? "add" : "remove"]("open")
-  })
+    // Evita registrar los eventos varias veces
+    if (button.dataset.initialized === "true") {
+      updateTheme();
+      return;
+    }
 
-  document.querySelectorAll(".themes-menu-option").forEach((element) => {
-    element.addEventListener("click", (e) => {
-      localStorage.setItem("theme", e.target.innerText.toLowerCase().trim())
-      updateTheme()
-    })
-  })
+    button.dataset.initialized = "true";
 
-  document.addEventListener('astro:after-swap', () => {
+    button.addEventListener("click", (e) => {
+      e.stopPropagation();
+      themesMenu.classList.toggle("open");
+    });
+
+    document.addEventListener("click", () => {
+      themesMenu.classList.remove("open");
+    });
+
+    document.querySelectorAll(".themes-menu-option").forEach((option) => {
+      option.addEventListener("click", (e) => {
+        const theme = e.target.innerText.toLowerCase().trim();
+
+        localStorage.setItem("theme", theme);
+
+        themesMenu.classList.remove("open");
+
+        updateTheme();
+      });
+    });
+
+    matchMedia.addEventListener("change", updateTheme);
+
     updateTheme();
-    window.scrollTo({ left: 0, top: 0, behavior: 'instant' });
-  })
+  }
+
+  initThemeToggle();
+
+  document.addEventListener("astro:page-load", () => {
+    initThemeToggle();
+  });
+
+  document.addEventListener("astro:after-swap", () => {
+    updateTheme();
+  });
 </script>
